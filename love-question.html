@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Please Be Mine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .shake {
+      animation: shake 0.3s ease-in-out;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body class="bg-pink-100 flex items-center justify-center h-screen">
+  <div id="card" class="bg-white p-8 rounded-2xl shadow-lg text-center max-w-md transition-all duration-300">
+    <h1 id="question" class="text-2xl font-bold text-pink-600 mb-6">Will you please be my girl again?</h1>
+    <div class="space-x-4">
+      <button onclick="sayYes()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
+        Yes
+      </button>
+      <button onclick="sayNo()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">
+        No
+      </button>
+    </div>
+    <p id="response" class="mt-6 text-red-500 font-semibold h-24"></p>
+  </div>
+
+  <script>
+    let noClicks = 0;
+
+    const generateFunnyResponse = (count) => {
+      if (count < 10) return "Oops! Try again 😅";
+      if (count < 20) return "Nope, try again. That button’s broken 😤";
+      if (count < 30) return "Seriously? Still no?? 🤨";
+      if (count < 40) return "This is getting out of hand 💀";
+      if (count < 50) return "Okay fine, you’re just messing with me now 😭";
+      if (count < 60) return "You can’t say no forever 😒";
+      if (count < 70) return "Alright, I’m getting the FBI involved 🕵️‍♂️";
+      if (count < 80) return "Error 420: Too much rejection 🔥";
+      if (count < 90) return "You're breaking my digital heart 💔";
+      if (count < 100) return "Just say YES already!!! 😫";
+      return [
+        "Do you really think I'll give up?? 😈",
+        "I’m evolving into a beg-bot 🤖",
+        "Resistance is futile 🌀",
+        "YES is your destiny ✨",
+        "I made cookies 🍪 if you say yes",
+        "I hacked the matrix for you 💻❤️",
+        "The NO button is now legally banned 🚫",
+        "NASA says you should say YES 🌌",
+        "You win... but still... just say yes pls 😭",
+        "FINAL WARNING: Cuteness overload incoming 🐶",
+        "You're strong... but I'm stronger 💪💘",
+        "Fine. But I'm still gonna ask again 💬",
+        "Even Goku would’ve said yes by now 🐉",
+        "Don't make me bring anime tears 😢",
+        "I’ll wait. Forever. ⏳💗",
+        "This is now your full-time job: pressing No 😏",
+        "I wrote a poem. Roses are red. Please say yes. The end.",
+        "Plot twist: saying YES gives you 1M Robux 💸",
+        "You're still going? I respect that... but still say YES 🫠"
+      ][(count - 100) % 20]; // loop through extras
+    };
+
+    function sayYes() {
+      document.getElementById("question").textContent = "RAHHHHHH YIPPPPEEEEE ❤️";
+      document.getElementById("response").textContent = "";
+      document.getElementById("card").classList.remove("shake");
+    }
+
+    function sayNo() {
+      noClicks++;
+      const response = generateFunnyResponse(noClicks);
+      const responseEl = document.getElementById("response");
+      const cardEl = document.getElementById("card");
+
+      responseEl.textContent = response;
+
+      // Add shake effect for fun
+      cardEl.classList.remove("shake");
+      void cardEl.offsetWidth; // trigger reflow
+      cardEl.classList.add("shake");
+
+      // You can add more dramatic effects here (color change, emoji rain, etc.)
+    }
+  </script>
+</body>
+</html>
